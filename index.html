@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AgroSentinel ▸ Automated Pest Detection & Prevention</title>
+
+    <!-- Tailwind / Chart.js -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      :root {
+        --primary: #2e8b57;
+        --primary-dark: #236c45;
+        --secondary: #0d9488;
+      }
+      html {
+        font-family: "Poppins", sans-serif;
+      }
+      body {
+        background: linear-gradient(135deg, #f0fff4 0%, #ebf8ff 100%);
+        color: #253341;
+        overflow-x: hidden;
+      }
+      /* --- Glass Morph --- */
+      .glass {
+        background: rgba(255, 255, 255, 0.18);
+        backdrop-filter: blur(14px) saturate(160%);
+        -webkit-backdrop-filter: blur(14px) saturate(160%);
+        border: 1px solid rgba(255, 255, 255, 0.28);
+      }
+      /* Scroll reveal core */
+      .sr {
+        opacity: 0;
+        transform: translateY(40px);
+        transition: all 0.9s cubic-bezier(0.25, 0.8, 0.25, 1);
+      }
+      .sr.show {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      /* Hero */
+      .hero {
+        background: url("https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1350&q=80")
+          center/cover no-repeat;
+      }
+      .hero::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.5);
+      }
+      /* navbar blur */
+      .nav-blur {
+        background: rgba(255, 255, 255, 0.5);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+      }
+      /* fancy underline */
+      .underline-gradient {
+        position: relative;
+        display: inline-block;
+      }
+      .underline-gradient::after {
+        content: "";
+        height: 3px;
+        width: 100%;
+        background: linear-gradient(90deg, var(--primary), var(--secondary));
+        position: absolute;
+        left: 0;
+        bottom: -4px;
+        border-radius: 9999px;
+      }
+      /* card hover */
+      .lift:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navbar -->
+    <header
+      id="navbar"
+      class="fixed w-full z-50 nav-blur transition-all duration-300"
+    >
+      <nav
+        class="max-w-6xl mx-auto flex items-center justify-between px-6 py-3"
+      >
+        <div class="flex items-center gap-3">
+          <img src="./images/logo-transparent.png" class="h-9 w-9" alt="logo" />
+          <span class="text-xl font-semibold text-green-700">AgroSentinel</span>
+        </div>
+        <ul class="hidden md:flex gap-8 font-medium text-gray-700">
+          <li><a href="#solution" class="hover:text-green-600">Solution</a></li>
+          <li>
+            <a href="#how" class="hover:text-green-600"
+              >How&nbsp;It&nbsp;Works</a
+            >
+          </li>
+          <li><a href="#benefits" class="hover:text-green-600">Benefits</a></li>
+          <li><a href="#future" class="hover:text-green-600">Future</a></li>
+          <li><a href="#team" class="hover:text-green-600">Team</a></li>
+        </ul>
+        <button id="menuBtn" class="md:hidden text-gray-700 focus:outline-none">
+          <svg
+            class="w-7 h-7"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+      </nav>
+      <!-- mobile -->
+      <div
+        id="mobileNav"
+        class="md:hidden hidden flex-col gap-4 pb-6 px-6 text-gray-700 font-medium"
+      >
+        <a href="#solution">Solution</a>
+        <a href="#how">How It Works</a>
+        <a href="#benefits">Benefits</a>
+        <a href="#future">Future</a>
+        <a href="#team">Team</a>
+      </div>
+    </header>
+
+    <!-- Hero -->
+    <section
+      id="home"
+      class="hero-bg text-white min-h-[60vh] flex items-center"
+      style="
+        background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+          url('https://images.unsplash.com/photo-1501004318641-b39e6451bec6?auto=format&fit=crop&w=1920&q=80˜');
+        background-size: cover;
+        background-position: center;
+      "
+    >
+      <div class="container mx-auto px-6 text-center">
+        <h1 class="text-4xl md:text-6xl font-bold mb-4 animate-fadeInUp">
+          AgroSentinel
+        </h1>
+        <h2 class="text-xl md:text-2xl mb-6 animate-fadeInUp animate-delay-200">
+          Automated Pest Detection & Prevention System
+        </h2>
+        <p
+          class="text-lg md:text-xl font-light glass-effect rounded-lg p-4 max-w-3xl mx-auto animate-fadeInUp animate-delay-400"
+        >
+          Protecting Crops with Innovation – Automated Pest Elimination System
+          <br />
+          <span class="text-base mt-2 block">
+            (ইনোভেশনের মাধ্যমে ফসলের সুরক্ষা – স্বয়ংক্রিয় পোকা প্রতিরোধ
+            ব্যবস্থা)
+          </span>
+        </p>
+        <a
+          href="#solution"
+          class="inline-block bg-green-600 hover:bg-green-700 text-white py-3 px-6 rounded-full shadow-lg transition"
+          >Learn More</a
+        >
+      </div>
+    </section>
+
+    <!-- Solution -->
+    <section id="solution" class="py-24 bg-white/60">
+      <div class="max-w-6xl mx-auto px-6">
+        <div class="text-center mb-16">
+          <h2 class="text-3xl font-bold text-gray-800 sr">
+            A Smarter Approach to Crop Protection
+          </h2>
+          <p
+            class="max-w-2xl mx-auto mt-3 text-gray-600 sr"
+            style="transition-delay: 150ms"
+          >
+            Traditional pesticide usage harms the environment and still leaves
+            crops vulnerable. AgroSentinel offers a chemical-free, sensor-driven
+            defence that keeps fields healthy and sustainable.
+          </p>
+        </div>
+        <div class="grid md:grid-cols-2 gap-10">
+          <div class="glass p-8 rounded-3xl border-l-4 border-red-500 sr lift">
+            <h3 class="text-2xl font-semibold mb-3 text-red-600">
+              🎯 The Challenge
+            </h3>
+            <p class="text-gray-700">
+              Heavy crop loss due to pests &amp; indiscriminate chemical sprays
+              harming soil, water and farmer health.
+            </p>
+          </div>
+          <div
+            class="glass p-8 rounded-3xl border-l-4 border-green-600 sr lift"
+            style="transition-delay: 200ms"
+          >
+            <h3 class="text-2xl font-semibold mb-3 text-green-700">
+              ✅ Our Solution
+            </h3>
+            <p class="text-gray-700">
+              Autonomous pest detection using IR &amp; ultrasonic sensors,
+              ultrasonic repellent sound, and SMS alerts powered by GSM – all
+              running on renewable solar power.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- How It Works (mini timeline) -->
+    <section id="how" class="py-24 relative">
+      <div
+        class="absolute inset-0 bg-gradient-to-b from-transparent via-white/60 to-white pointer-events-none"
+      ></div>
+      <div class="max-w-6xl mx-auto px-6 relative">
+        <h2 class="text-3xl font-bold text-center mb-16 sr">How It Works</h2>
+        <div class="grid md:grid-cols-4 gap-10 text-center">
+          <div class="sr lift">
+            <div
+              class="w-20 h-20 mx-auto flex items-center justify-center text-3xl bg-green-100 rounded-full mb-4"
+            >
+              🔍
+            </div>
+            <h4 class="font-semibold mb-2">Detect</h4>
+            <p class="text-gray-600 text-sm">
+              IR &amp; Ultrasonic sensors scan for pest activity.
+            </p>
+          </div>
+          <div class="sr lift" style="transition-delay: 100ms">
+            <div
+              class="w-20 h-20 mx-auto flex items-center justify-center text-3xl bg-green-100 rounded-full mb-4"
+            >
+              🔊
+            </div>
+            <h4 class="font-semibold mb-2">Repel</h4>
+            <p class="text-gray-600 text-sm">
+              High-frequency ultrasonic sound drives pests away.
+            </p>
+          </div>
+          <div class="sr lift" style="transition-delay: 200ms">
+            <div
+              class="w-20 h-20 mx-auto flex items-center justify-center text-3xl bg-green-100 rounded-full mb-4"
+            >
+              📲
+            </div>
+            <h4 class="font-semibold mb-2">Alert</h4>
+            <p class="text-gray-600 text-sm">
+              GSM module sends SMS updates to farmers instantly.
+            </p>
+          </div>
+          <div class="sr lift" style="transition-delay: 300ms">
+            <div
+              class="w-20 h-20 mx-auto flex items-center justify-center text-3xl bg-green-100 rounded-full mb-4"
+            >
+              ☀️
+            </div>
+            <h4 class="font-semibold mb-2">Power</h4>
+            <p class="text-gray-600 text-sm">
+              Solar panel keeps the system running off-grid 24/7.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Benefits Chart -->
+    <section id="benefits" class="py-24 bg-white/60">
+      <div class="max-w-6xl mx-auto px-6">
+        <h2 class="text-3xl font-bold text-center mb-16 sr">
+          Impact Dashboard
+        </h2>
+        <div class="relative h-[420px] max-w-3xl mx-auto">
+          <canvas id="benefitsChart"></canvas>
+        </div>
+      </div>
+    </section>
+
+    <!-- Future -->
+    <section id="future" class="py-24">
+      <div class="max-w-6xl mx-auto px-6">
+        <h2 class="text-3xl font-bold text-center mb-16 sr">Future Roadmap</h2>
+        <div class="grid md:grid-cols-3 gap-10">
+          <div class="glass p-8 rounded-2xl sr lift">
+            <h4 class="text-xl font-semibold mb-2">🤖 AI Pest ID</h4>
+            <p class="text-gray-600 text-sm">
+              Deploy camera modules with ML models to detect pest species and
+              severity.
+            </p>
+          </div>
+          <div
+            class="glass p-8 rounded-2xl sr lift"
+            style="transition-delay: 100ms"
+          >
+            <h4 class="text-xl font-semibold mb-2">🌦️ Climate Sync</h4>
+            <p class="text-gray-600 text-sm">
+              Integrate real-time weather APIs to auto-adjust system thresholds.
+            </p>
+          </div>
+          <div
+            class="glass p-8 rounded-2xl sr lift"
+            style="transition-delay: 200ms"
+          >
+            <h4 class="text-xl font-semibold mb-2">📱 Mobile Suite</h4>
+            <p class="text-gray-600 text-sm">
+              Full-featured app for live control, analytics, and historical
+              data.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Team / Footer -->
+    <footer id="team" class="bg-gray-900 text-gray-300 py-16">
+      <div class="max-w-6xl mx-auto px-6 text-center space-y-4">
+        <h3 class="text-2xl font-bold">Our Team</h3>
+        <p>United International University – Dept. of CSE</p>
+        <p class="text-sm">
+          Team Lead: Mutasim Fuad Rafi &bull; Members: Nafij Hejaji, Md. Jihad
+          Babu, Abu Hasnat Mohammad Istiaq, Md Siam Ahmed
+        </p>
+      </div>
+    </footer>
+
+    <!-- JS -->
+    <script>
+      // Mobile nav
+      const btn = document.getElementById("menuBtn");
+      const mobileNav = document.getElementById("mobileNav");
+      btn.addEventListener("click", () => mobileNav.classList.toggle("hidden"));
+
+      // navbar shrink
+      const nav = document.getElementById("navbar");
+      window.addEventListener("scroll", () => {
+        nav.classList.toggle("py-1", window.scrollY > 50);
+      });
+
+      // Scroll reveal using IntersectionObserver
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((e) => {
+            if (e.isIntersecting) {
+              e.target.classList.add("show");
+            }
+          });
+        },
+        { threshold: 0.15 }
+      );
+      document.querySelectorAll(".sr").forEach((el) => observer.observe(el));
+
+      // Chart
+      const ctx = document.getElementById("benefitsChart").getContext("2d");
+      new Chart(ctx, {
+        type: "bar",
+        data: {
+          labels: ["Chemical Use", "Crop Loss", "Labor Cost", "CO₂ Footprint"],
+          datasets: [
+            {
+              label: "Traditional",
+              data: [90, 40, 80, 95],
+              backgroundColor: "rgba(239,68,68,.7)",
+            },
+            {
+              label: "AgroSentinel",
+              data: [5, 10, 20, 10],
+              backgroundColor: "rgba(34,197,94,.7)",
+            },
+          ],
+        },
+        options: {
+          responsive: true,
+          indexAxis: "y",
+          scales: { x: { max: 100 } },
+        },
+      });
+    </script>
+  </body>
+</html>
