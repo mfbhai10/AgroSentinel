@@ -4,7 +4,7 @@ AgroSentinel is a smart, eco-friendly IoT-based system designed to protect crops
 
 ## 🔗 Live Demo
 
-> [🔗 View the Website]()  
+> [🔗 View the Website](https://agro-sentinel.vercel.app/)  
 *(Replace with your actual live link or GitHub Pages deployment link)*
 
 ---
